@@ -36,20 +36,21 @@ weight_data = pd.DataFrame({'Pokemon': ['Weedle', name.title(), 'Victreebel'],
                             'Weights': [32, weight, 155]})
 
 # Bar Graph Configurations
-colors = ['black', 'red', 'black']
-
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+
+h_colors = ['grey']
+w_colors = ['grey']
 
 h_graph = sns.barplot(data=height_data,
                       x='Pokemon',
                       y='Heights',
-                      palette=colors,
+                      palette=h_colors,
                       ax=ax1)
 
 w_graph = sns.barplot(data=weight_data,
                       x='Pokemon',
                       y='Weights',
-                      palette=colors,
+                      palette=w_colors,
                       ax=ax2)
 
 for p in h_graph.patches:
@@ -88,6 +89,14 @@ color_map = {'normal': 'grey',
              'steel': 'lightslategrey', 
              'fairy': 'pink'}
 
+# Get the color of the first type
+first_type = types[0] if types else None
+type_color = color_map.get(first_type, 'blue')
+
+# Apply color to the bars
+h_graph.patches[1].set_facecolor(type_color)
+w_graph.patches[1].set_facecolor(type_color)
+    
 # Sets x and y axis names as blank to not show Pokemon
 ax1.set_title('Height')
 ax2.set_title('Weight')
