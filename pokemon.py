@@ -36,7 +36,7 @@ weight_data = pd.DataFrame({'Pokemon': ['Weedle', name.title(), 'Victreebel'],
                             'Weights': [32, weight, 155]})
 
 # Bar Graph Configurations
-colors = ['grey', 'red', 'grey']
+colors = ['black', 'red', 'black']
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 
@@ -67,7 +67,26 @@ for p in w_graph.patches:
                      va='center',
                      xytext=(0, 5),
                      textcoords='offset points')
-
+    
+#Change container color based on type
+color_map = {'normal': 'grey', 
+             'fire': 'orange', 
+             'water': 'deepskyblue', 
+             'electric': 'yellow',
+             'grass': 'green', 
+             'ice': 'lightcyan', 
+             'fighting': 'red', 
+             'poison': 'purple',
+             'ground': 'darkgoldenrod', 
+             'flying': 'mediumpurple', 
+             'psychic': 'pink', 
+             'bug': 'olive',
+             'rock': 'brown', 
+             'ghost': 'purple', 
+             'dragon': 'indigo', 
+             'dark': 'black',
+             'steel': 'lightslategrey', 
+             'fairy': 'pink'}
 
 # Sets x and y axis names as blank to not show Pokemon
 ax1.set_title('Height')
@@ -81,7 +100,16 @@ st.write(f'Height: {height}cm')
 st.write(f'Weight: {weight}kg')
 st.write(f'Move Count: {moves}')
 st.write(f'ID: {pokemon_num}')
-st.write(f'Type: {types}')
+st.write("Type:")
+types_con = st.container()
+with types_con:
+    for pokemon_type in types:
+        if pokemon_type in color_map:
+            type_color = color_map[pokemon_type]
+        else:
+            type_color = 'grey'
+        st.markdown(f'<div style="background-color:{type_color};padding:5px;border-radius:5px;">{pokemon_type.title()}</div>', unsafe_allow_html=True)
+        
 
 # Image display
 st.markdown("<h1 style='text-align: center;'>Pokemon</h1>", unsafe_allow_html=True)
