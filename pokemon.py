@@ -47,7 +47,7 @@ h_graph = sns.barplot(data=height_data,
                       palette=h_colors,
                       ax=ax1)
 
-w_graph = sns.barplot(data=weight_data,
+w_graph = sns.barplot(data=weight_data, 
                       x='Pokemon',
                       y='Weights',
                       palette=w_colors,
