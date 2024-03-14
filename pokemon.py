@@ -24,7 +24,7 @@ def get_details(poke_number):
         st.error(f"An error occurred: {e}")
         return 'Error', np.NaN, np.NaN, None, None, None, np.NaN
 
-pokemon_num = st.slider("Pick a Pokemon ", min_value=1, max_value=1000)
+pokemon_num = st.slider("Pick a Pokemon ", min_value=1, max_value=1302)
 
 name, height, weight, front_default, audio_url, types, moves = get_details(pokemon_num)
 
